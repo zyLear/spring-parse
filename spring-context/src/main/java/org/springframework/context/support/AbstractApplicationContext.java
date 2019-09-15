@@ -533,6 +533,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				postProcessBeanFactory(beanFactory);
 
 				//扫描所有的beanDefinition 信息加入到 beanDefinitionMap
+				//执行注册到容器中的 bean工厂后置处理器
 				// Invoke factory processors registered as beans in the context.
 				invokeBeanFactoryPostProcessors(beanFactory);
 

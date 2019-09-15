@@ -500,6 +500,12 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		}
 
 		try {
+
+			/*
+			* 通过bean的后置处理器来进行后置处理生成代理对象,一般情况下在此处不会生成代理对象
+			* *为什么不能生成代理对象,不管是我们的jdk代理还是cglib代理都不会在此处进行代理,因为我们的
+			* *真实的对象没有生成,所以在这里不会生成代理对象,那么在这一步是我们Jaop和事务的关键,因为在这里
+			* */
 			// Give BeanPostProcessors a chance to return a proxy instead of the target bean instance.
 			Object bean = resolveBeforeInstantiation(beanName, mbdToUse);
 			if (bean != null) {
@@ -552,6 +558,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			instanceWrapper = this.factoryBeanInstanceCache.remove(beanName);
 		}
 		if (instanceWrapper == null) {
+			//使用合适的实例化策略来创建新的实例：工厂方法，构造函数自动注入，简单初始化 这方法很复杂但很重要
 			instanceWrapper = createBeanInstance(beanName, mbd, args);
 		}
 		final Object bean = instanceWrapper.getWrappedInstance();
