@@ -180,7 +180,10 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	/** Whether bean definition metadata may be cached for all beans. */
 	private volatile boolean configurationFrozen = false;
 
-
+	/*
+	*
+	* 功能很全的BeanFactory
+	* */
 	/**
 	 * Create a new DefaultListableBeanFactory.
 	 */
@@ -847,6 +850,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			}
 		}
 
+		//为全部合适的bean的触发post-initialization 实例后置处理方法
 		// Trigger post-initialization callback for all applicable beans...
 		for (String beanName : beanNames) {
 			Object singletonInstance = getSingleton(beanName);
