@@ -166,6 +166,12 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 		return getSingleton(beanName, true);
 	}
 
+
+
+	/*
+	* 获取单例已经实例化的bean（加入到singletonObjects） 或者早期创建引用的bean
+	* */
+
 	/**
 	 * Return the (raw) singleton object registered under the given name.
 	 * <p>Checks already instantiated singletons and also allows for an early

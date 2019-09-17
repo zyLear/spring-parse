@@ -32,6 +32,11 @@ import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
  */
 public interface BeanDefinitionRegistryPostProcessor extends BeanFactoryPostProcessor {
 
+
+	/*
+	* 意思就是比正常的postProcessBeanFactory 先执行
+	* */
+
 	/**
 	 * Modify the application context's internal bean definition registry after its
 	 * standard initialization. All regular bean definitions will have been loaded,

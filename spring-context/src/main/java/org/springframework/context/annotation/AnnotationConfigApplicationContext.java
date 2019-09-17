@@ -85,8 +85,10 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	 */
 	public AnnotationConfigApplicationContext(Class<?>... annotatedClasses) {
 		//调用构造函数
+		// 调用父类构造函数 实例化DefaultListableBeanFactory
 		this();
 		//注册配置类
+		// ac.register(AppConfig.class)
 		register(annotatedClasses);
 		//IOC容器刷新接口
 		refresh();

@@ -302,6 +302,15 @@ public interface BeanFactory {
 	 */
 	boolean isTypeMatch(String name, ResolvableType typeToMatch) throws NoSuchBeanDefinitionException;
 
+
+
+
+
+
+	/* 检查这个name是否带有指定的类型 相当于判断有没有继承
+		更准确地说是 先调用getBean 之后再判断
+	* */
+
 	/**
 	 * Check whether the bean with the given name matches the specified type.
 	 * More specifically, check whether a {@link #getBean} call for the given name
