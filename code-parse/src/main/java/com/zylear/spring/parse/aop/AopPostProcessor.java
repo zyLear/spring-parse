@@ -10,7 +10,7 @@ import java.lang.reflect.Proxy;
 
 @Component
 public class AopPostProcessor implements BeanPostProcessor {
-	z
+
 	@Override
 	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
 
