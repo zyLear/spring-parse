@@ -1,6 +1,7 @@
 package com.zylear.spring.parse.bean;
 
-public class Person {
+
+public class Person implements Query {
 
 	@Override
 	public String toString() {
@@ -35,5 +36,10 @@ public class Person {
 
 	public void setCode(Integer code) {
 		this.code = code;
+	}
+
+	@Override
+	public void query() {
+		System.out.println("person query");
 	}
 }

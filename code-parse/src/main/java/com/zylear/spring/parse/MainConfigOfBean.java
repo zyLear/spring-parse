@@ -2,11 +2,12 @@ package com.zylear.spring.parse;
 
 import com.zylear.spring.parse.bean.Person;
 import com.zylear.spring.parse.bean.PrototypeBean;
+import com.zylear.spring.parse.bean.Query;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
-@ComponentScan("com.zylear.spring.parse.*")
+@ComponentScan("com.zylear.spring.parse")
 public class MainConfigOfBean {
 
 
@@ -26,6 +27,10 @@ public class MainConfigOfBean {
 //		System.out.println(context.getBean("person"));
 		System.out.println(context.getBean(PrototypeBean.class, "first"));
 		System.out.println(context.getBean(PrototypeBean.class, "two"));
+		Query person = (Query) context.getBean("person");
+		person.query();
+//		Query bean = context.getBean(Query.class);
+//		bean.query();
 	}
 
 }

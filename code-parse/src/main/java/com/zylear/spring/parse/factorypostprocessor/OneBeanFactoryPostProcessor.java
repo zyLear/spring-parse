@@ -7,7 +7,6 @@ import org.springframework.core.PriorityOrdered;
 import org.springframework.stereotype.Component;
 
 @Component
-
 public class OneBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
 	@Override
 	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
