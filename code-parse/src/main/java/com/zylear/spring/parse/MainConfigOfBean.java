@@ -1,13 +1,18 @@
 package com.zylear.spring.parse;
 
+import com.zylear.spring.parse.annotation.EnableAop;
+import com.zylear.spring.parse.aop.AopPostProcessor;
 import com.zylear.spring.parse.bean.Person;
 import com.zylear.spring.parse.bean.PrototypeBean;
 import com.zylear.spring.parse.bean.Query;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Import;
 
+@EnableAop
 @ComponentScan("com.zylear.spring.parse")
+//@Import(AopPostProcessor.class)
 public class MainConfigOfBean {
 
 

@@ -22,7 +22,10 @@ import org.springframework.core.type.AnnotationMetadata;
 
 
 //当解析@Configuation的时候 注册实现ImportBeanDefinitionRegistrar的类
-//只要带着Configuration 和ImportSelector 这个类提供一个注解Import 可以注册beanDefinition
+//随着着Configuration 和ImportSelector  用一个注解Import 这个类就被注册beanDefinition
+
+//这个是在操作beanDefinition级别的时候生效  在方法/实例级别不生效
+
 //这实现了ImportBeanDefinitionRegistrar这个类也可以实现Aware接口
 //aware方法在 registerBeanDefinitions之前执行
 

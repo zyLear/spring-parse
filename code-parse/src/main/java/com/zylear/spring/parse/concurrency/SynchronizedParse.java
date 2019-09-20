@@ -38,12 +38,12 @@ public class SynchronizedParse {
 
 //		System.out.println(lock);
 //		System.out.println();
-		System.out.println(Integer.toBinaryString(lock.hashCode()));
+		System.out.println(Integer.toHexString(lock.hashCode()));
 		System.out.println(ClassLayout.parseInstance(lock).toPrintable());
 //		System.out.println();
 //		lock.setCode(1);
 		lock.setName("name");
-		System.out.println(ClassLayout.parseInstance(lock).toPrintable());
+//		System.out.println(ClassLayout.parseInstance(lock).toPrintable());
 
 	}
 

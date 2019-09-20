@@ -65,6 +65,15 @@ import org.springframework.util.ClassUtils;
 
 import static org.springframework.context.annotation.AnnotationConfigUtils.CONFIGURATION_BEAN_NAME_GENERATOR;
 
+
+/*
+* 用来处理@configuration注解的类
+*
+* 这个处理器是高优先级的 以致@Configuration下面的相关的@Bean
+* 在其他BeanFactoryPostProcessor执行之前 注册到beanDefinition
+*
+* */
+
 /**
  * {@link BeanFactoryPostProcessor} used for bootstrapping processing of
  * {@link Configuration @Configuration} classes.
