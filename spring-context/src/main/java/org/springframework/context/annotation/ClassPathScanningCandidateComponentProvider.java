@@ -192,6 +192,11 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 		}
 	}
 
+
+	/**
+	 * componentScan Fitler 默认配置  不管三七二十一 先把 @Component 的都解析了
+	 */
+
 	/**
 	 * Register the default filter for {@link Component @Component}.
 	 * <p>This will implicitly register all annotations that have the

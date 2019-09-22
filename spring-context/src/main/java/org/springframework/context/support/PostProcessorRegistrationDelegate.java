@@ -88,7 +88,7 @@ final class PostProcessorRegistrationDelegate {
 			}
 
 
-			//BeanDefinitionRegistryPostProcessors 后置处理器区别于常规的beanFactoryPostProcessor 有优先级排序
+			//BeanDefinitionRegistryPostProcessors
 
 			//应该是不实例化任何非beanFactoryPostProcessor的bean
 

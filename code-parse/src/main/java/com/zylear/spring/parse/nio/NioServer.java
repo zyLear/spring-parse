@@ -24,6 +24,7 @@ public class NioServer {
 
 		ServerSocketChannel server = ServerSocketChannel.open();
 		server.bind(new InetSocketAddress("localhost",10300));
+		//不要阻塞
 		server.configureBlocking(false);
 		while (true) {
 
@@ -38,6 +39,7 @@ public class NioServer {
 
 			SocketChannel accept = server.accept();
 			if (accept != null) {
+				//不要阻塞
 				accept.configureBlocking(false);
 				sockets.add(accept);
 			}
