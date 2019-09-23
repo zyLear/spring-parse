@@ -42,4 +42,28 @@ public class Person implements Query {
 	public void query() {
 		System.out.println("person query");
 	}
+
+	public static void main(String[] args) {
+
+		Thread thread = new Thread(){
+			@Override
+			public void run() {
+				try {
+					Thread.sleep(100000);
+				} catch (Exception e) {
+				}
+				System.out.println(isInterrupted());
+			}
+		};
+		thread.start();
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+		}
+		thread.interrupt();
+		try {
+			Thread.sleep(100000);
+		} catch (InterruptedException e) {
+		}
+	}
 }

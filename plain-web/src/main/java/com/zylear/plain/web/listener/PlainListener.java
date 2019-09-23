@@ -21,8 +21,8 @@ public class PlainListener implements ServletContextListener {
 
 
 		ServletRegistration.Dynamic registration = servletContext.addServlet("jspName", servlet);
+		registration.setLoadOnStartup(1);
 		registration.addMapping("/jsp");
-//		registration.setLoadOnStartup(1);
 //		registration.addMapping("/jsp");
 
 
