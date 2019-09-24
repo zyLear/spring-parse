@@ -55,6 +55,9 @@ final class PostProcessorRegistrationDelegate {
 	public static void invokeBeanFactoryPostProcessors(
 			ConfigurableListableBeanFactory beanFactory, List<BeanFactoryPostProcessor> beanFactoryPostProcessors) {
 
+		// 参数的beanFactoryPostProcessors 是程序员手动设置的beanFactoryPostProcessor 首先执行
+		// context.addBeanFactoryPostProcessor(xx);
+
 		// 如果有的话，首先调用beandefinition registrypostprocessor
 		// 之后再从beanDefinitionMap 里面获取beanFactory 按优先级实例化 然后执行后置处理方法
 		// Invoke BeanDefinitionRegistryPostProcessors first, if any.
@@ -62,9 +65,12 @@ final class PostProcessorRegistrationDelegate {
 		//processedBeans 主要用来去重
 		Set<String> processedBeans = new HashSet<>();
 
+
+		//判断beanFactory 是否实现 BeanDefinitionRegistry 因为
+		//postProcessBeanDefinitionRegistry(xx) 里面的参数是BeanDefinitionRegistry
 		if (beanFactory instanceof BeanDefinitionRegistry) {
 
-			//beanFactory 分为两种  一种是常规的regularPostProcessors 一种是BeanDefinitionRegistryPostProcessor
+			//beanFactoryPostProcessor 分为两种  一种是常规的regularPostProcessors 一种是BeanDefinitionRegistryPostProcessor
 			// 如果是一种是BeanDefinitionRegistryPostProcessor
 			// 首先调用后置处理方法postProcessBeanDefinitionRegistry
 			// 来修改 BeanDefinitionRegistry  (All regular bean definitions will have been loaded,
@@ -97,6 +103,8 @@ final class PostProcessorRegistrationDelegate {
 			// Separate between BeanDefinitionRegistryPostProcessors that implement
 			// PriorityOrdered, Ordered, and the rest.
 			List<BeanDefinitionRegistryPostProcessor> currentRegistryProcessors = new ArrayList<>();
+
+			//主要是执行 ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry() 扫描beanDefinition
 
 			// First, invoke the BeanDefinitionRegistryPostProcessors that implement PriorityOrdered.
 			String[] postProcessorNames =

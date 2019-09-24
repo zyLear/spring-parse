@@ -34,6 +34,7 @@ final class ScopedProxyCreator {
 	}
 
 
+	//proxy creator 创建代理的beanDefinition （主要是替换beanDefinition的class信息 猜的）
 	public static BeanDefinitionHolder createScopedProxy(
 			BeanDefinitionHolder definitionHolder, BeanDefinitionRegistry registry, boolean proxyTargetClass) {
 

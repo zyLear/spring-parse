@@ -1,6 +1,12 @@
 package com.zylear.spring.parse.bean;
 
 
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+
+//@Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON,
+//		proxyMode = ScopedProxyMode.TARGET_CLASS)   //cglib
 public class Person implements Query {
 
 	@Override
@@ -45,7 +51,7 @@ public class Person implements Query {
 
 	public static void main(String[] args) {
 
-		Thread thread = new Thread(){
+		Thread thread = new Thread() {
 			@Override
 			public void run() {
 				try {

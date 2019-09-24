@@ -18,21 +18,27 @@ import java.util.Arrays;
 				classes = Controller.class)}
 		, useDefaultFilters = false*/)
 //@Import(AopPostProcessor.class)
+@Configuration
 public class MainConfigOfBean {
 
 
+	@Bean
+	public Person person() {
+		Person person = new Person();
+		person.setName("name");
+		person.setCode(12);
+		return person;
+	}
+
 //	@Bean
-//	public Person person() {
-//		Person person = new Person();
-//		person.setName("name");
-//		person.setCode(12);
-//		return person;
-//	}
 
 
 	public static void main(String[] args) {
 		AnnotationConfigApplicationContext context =
-				new AnnotationConfigApplicationContext(MainConfigOfBean.class);
+				new AnnotationConfigApplicationContext();
+		context.register(MainConfigOfBean.class);
+//		context.addBeanFactoryPostProcessor(xx);  //手动加beanFactoryPostProcessor到 context 第一个执行
+		context.refresh();
 //		System.out.println(context.getBean("person"));
 //		System.out.println(context.getBean(PrototypeBean.class, "first"));
 //		System.out.println(context.getBean(PrototypeBean.class, "two"));
@@ -48,8 +54,12 @@ public class MainConfigOfBean {
 
 		String[] beanDefinitionNames = context.getBeanDefinitionNames();
 		for (String name : beanDefinitionNames) {
-			System.out.println(name);
+			System.out.print(name + " " + context.getBeanDefinition(name).getBeanClassName());
+			System.out.println();
 		}
+
+		System.out.println("xia");
+		System.out.println(context.getBean(MainConfigOfBean.class));
 
 
 //		Query bean = context.getBean(Query.class);
