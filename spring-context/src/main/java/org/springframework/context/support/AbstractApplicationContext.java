@@ -518,7 +518,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			prepareRefresh();
 
 
-			//很重要的方法1
+
 			//刷新并获取子类的里面的属性 BeanFactory
 			// （beanFactory是AbstractApplicationContext的一个属性）
 			// Tell the subclass to refresh the internal bean factory.
@@ -535,6 +535,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				//扫描所有的beanDefinition 信息加入到 beanDefinitionMap
 				//注册并执行容器中的 bean工厂后置处理器
 
+				//很重要的方法1
 				//20190918 得出结论  在执行 ConfigurationClassPostProcessor implements BeanDefinitionRegistryPostProcessor
 				//这个类的postProcessBeanDefinitionRegistry这个后置处理方法的时候扫面包然后加到beanDefinitionMap
 
