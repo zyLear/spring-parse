@@ -260,6 +260,8 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 		}
 
 		enhanceConfigurationClasses(beanFactory);
+
+		//第三个spring内部手动new的beanPostProcessor
 		beanFactory.addBeanPostProcessor(new ImportAwareBeanPostProcessor(beanFactory));
 	}
 
@@ -274,14 +276,18 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 		for (String beanName : candidateNames) {
 			BeanDefinition beanDef = registry.getBeanDefinition(beanName);
 
-			//找出没有配置完的 配置类
+			//找出没有配置完的 配置类   打日志
 			if (ConfigurationClassUtils.isFullConfigurationClass(beanDef) ||
 					ConfigurationClassUtils.isLiteConfigurationClass(beanDef)) {
 				if (logger.isDebugEnabled()) {
 					logger.debug("Bean definition has already been processed as a configuration class: " + beanDef);
 				}
 			}
-			//找出符合的配置类
+			//找出符合的配置类  加到候选人list
+			//isFullConfigurationCandidate(metadata) 加了Configuration 是Full
+			//isLiteConfigurationCandidate(metadata)
+			//里面有@Bean的方法 或者类上有以下注解 为 Lite
+			//@Component @ComponentScan @Import @ImportResource
 			else if (ConfigurationClassUtils.checkConfigurationClassCandidate(beanDef, this.metadataReaderFactory)) {
 				configCandidates.add(new BeanDefinitionHolder(beanDef, beanName));
 			}
@@ -291,6 +297,10 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 		if (configCandidates.isEmpty()) {
 			return;
 		}
+
+
+		//注意这里的configCandidates是context一开始设置的这个  一般只有一个 context.register(MainConfigOfBean.class);
+		//并不是我们其他加@Configuration的类  ！！！！！！
 
 		// Sort by previously determined @Order value, if applicable
 		configCandidates.sort((bd1, bd2) -> {
@@ -324,10 +334,14 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 
 		Set<BeanDefinitionHolder> candidates = new LinkedHashSet<>(configCandidates);
 		Set<ConfigurationClass> alreadyParsed = new HashSet<>(configCandidates.size());
+
+		//相当于递归调用 解析出来@Configuration的class  加到 beanDefinition 然后再解析bd 再获取 @Configuration的class 再加bd
 		do {
 			parser.parse(candidates);
 			parser.validate();
 
+			//这里返回的东西 会把  candidates 里面的也传出来比如 传了一个candidate进parser
+			// 假设解析了两个@Configuration的class  返回的size是3 用结果去重
 			Set<ConfigurationClass> configClasses = new LinkedHashSet<>(parser.getConfigurationClasses());
 			configClasses.removeAll(alreadyParsed);
 

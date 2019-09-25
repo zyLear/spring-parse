@@ -1,19 +1,9 @@
-package com.zylear.spring.parse;
+package com.zylear.spring.parse.app;
 
-import com.zylear.spring.parse.annotation.EnableAop;
-import com.zylear.spring.parse.aop.AopPostProcessor;
-import com.zylear.spring.parse.bean.Person;
-import com.zylear.spring.parse.bean.PrototypeBean;
-import com.zylear.spring.parse.bean.Query;
-import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.*;
-import org.springframework.context.annotation.ComponentScan.Filter;
-import org.springframework.stereotype.Controller;
-
-import java.util.Arrays;
 
 //@EnableAop
-@ComponentScan(value = "com.zylear.spring.parse"/*,
+@ComponentScan(value = "com.zylear.spring.parse.config"/*,
 		includeFilters = {@Filter(type = FilterType.ANNOTATION,
 				classes = Controller.class)}
 		, useDefaultFilters = false*/)
@@ -22,13 +12,7 @@ import java.util.Arrays;
 public class MainConfigOfBean {
 
 
-	@Bean
-	public Person person() {
-		Person person = new Person();
-		person.setName("name");
-		person.setCode(12);
-		return person;
-	}
+
 
 //	@Bean
 
@@ -37,6 +21,7 @@ public class MainConfigOfBean {
 		AnnotationConfigApplicationContext context =
 				new AnnotationConfigApplicationContext();
 		context.register(MainConfigOfBean.class);
+
 //		context.addBeanFactoryPostProcessor(xx);  //手动加beanFactoryPostProcessor到 context 第一个执行
 		context.refresh();
 //		System.out.println(context.getBean("person"));
@@ -58,8 +43,8 @@ public class MainConfigOfBean {
 			System.out.println();
 		}
 
-		System.out.println("xia");
-		System.out.println(context.getBean(MainConfigOfBean.class));
+//		System.out.println("xia");
+//		System.out.println(context.getBean(MainConfigOfBean.class));
 
 
 //		Query bean = context.getBean(Query.class);

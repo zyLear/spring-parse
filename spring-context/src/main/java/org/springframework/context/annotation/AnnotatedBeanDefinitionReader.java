@@ -218,7 +218,8 @@ public class AnnotatedBeanDefinitionReader {
 			return;
 		}
 
-		//解析注册这个类的信息
+		//解析注册这个类的信息  把class的基本信息解析（Lazy scope primary） 设置到beanDefinition
+		// 目前跟 @Configuration @ComponentScan @Component 没有任何关系
 
 		abd.setInstanceSupplier(instanceSupplier);
 		ScopeMetadata scopeMetadata = this.scopeMetadataResolver.resolveScopeMetadata(abd);

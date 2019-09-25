@@ -122,6 +122,9 @@ abstract class ConfigurationClassUtils {
 			return false;
 		}
 
+
+		//context手动设置的配置类的顺序  跟其他代码写的@Configuration上的order无关
+
 		// It's a full or lite configuration candidate... Let's determine the order value, if any.
 		Integer order = getOrder(metadata);
 		if (order != null) {

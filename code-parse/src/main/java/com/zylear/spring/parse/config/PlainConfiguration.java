@@ -10,8 +10,16 @@ public class PlainConfiguration {
 
 	@Bean
 	Person person1() {
+		System.out.println("person1 construst");
 		return new Person();
 	}
 
+	@Bean
+	public Person person() {
+		Person person = new Person();
+		person.setName("name");
+		person.setCode(12);
+		return person;
+	}
 
 }

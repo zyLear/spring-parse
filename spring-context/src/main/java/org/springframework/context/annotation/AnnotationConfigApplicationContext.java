@@ -63,6 +63,7 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	 */
 	public AnnotationConfigApplicationContext() {
 		this.reader = new AnnotatedBeanDefinitionReader(this);
+		//这个scan spring内部没有用到  用来给开发人员 context外部调用的 context.scan();
 		this.scanner = new ClassPathBeanDefinitionScanner(this);
 	}
 
