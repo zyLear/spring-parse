@@ -239,9 +239,14 @@ class ConfigurationClassParser {
 			}
 		}
 
+		//外层循环 Collection<ConfigurationClass>
+
+		//递归处理配置类合他的..类
 		// Recursively process the configuration class and its superclass hierarchy.
 		SourceClass sourceClass = asSourceClass(configClass);
 		do {
+
+			//这里在里面找到 就 注册了吧
 			sourceClass = doProcessConfigurationClass(configClass, sourceClass);
 		}
 		while (sourceClass != null);
