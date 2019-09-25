@@ -35,6 +35,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
+//代表用户定义的配置类 @Configuration 包含 @Bean方法 包含再父类中定义的@Bean方法
+
 /**
  * Represents a user-defined {@link Configuration @Configuration} class.
  * Includes a set of {@link Bean} methods, including all such methods

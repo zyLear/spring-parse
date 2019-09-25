@@ -58,6 +58,9 @@ public class AnnotatedGenericBeanDefinition extends GenericBeanDefinition implem
 		this.metadata = new StandardAnnotationMetadata(beanClass, true);
 	}
 
+
+
+
 	/**
 	 * Create a new AnnotatedGenericBeanDefinition for the given annotation metadata,
 	 * allowing for ASM-based processing and avoidance of early loading of the bean class.
