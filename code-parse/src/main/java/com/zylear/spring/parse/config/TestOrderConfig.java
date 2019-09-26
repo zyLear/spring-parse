@@ -9,10 +9,10 @@ import org.springframework.core.annotation.Order;
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class TestOrderConfig {
 
-	@Bean
-	public String one() {
-		System.out.println("one construst");
-		return "one";
-	}
+//	@Bean
+//	public String one() {
+//		System.out.println("one construst");
+//		return "one";
+//	}
 
 }
