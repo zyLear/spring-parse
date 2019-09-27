@@ -3,6 +3,12 @@ package com.zylear.spring.parse.concurrency;
 import com.zylear.spring.parse.bean.Person;
 import org.openjdk.jol.info.ClassLayout;
 
+
+/**
+ * 第一次是先有个概念  之后再复习
+ *
+ * 总结  对象头标志位改变
+ */
 public class SynchronizedParse {
 
 

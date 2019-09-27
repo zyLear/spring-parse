@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.concurrent.locks.LockSupport;
+
 @ComponentScan(value = "com.zylear.spring.parse.config")
 //@Configuration
 public class MainConfigOfConfigurationOrder {
