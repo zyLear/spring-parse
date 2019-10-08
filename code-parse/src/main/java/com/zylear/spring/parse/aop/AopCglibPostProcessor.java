@@ -23,7 +23,7 @@ public class AopCglibPostProcessor implements BeanPostProcessor {
 			});
 		}
 		Enhancer enhancer = new Enhancer();
-		enhancer.setsu
+//		enhancer.setsu
 		return bean;
 	}
 }
