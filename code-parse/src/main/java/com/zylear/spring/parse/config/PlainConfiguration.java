@@ -8,18 +8,20 @@ import org.springframework.context.annotation.Configuration;
 public class PlainConfiguration {
 
 
-//	@Bean
-//	Person person1() {
-//		System.out.println("person1 construst");
-//		return new Person();
-//	}
+	@Bean
+	Person person1() {
+		System.out.println("person1 construst");
+		person2();
+		return new Person();
+	}
 //
-//	@Bean
-//	public Person person() {
-//		Person person = new Person();
-//		person.setName("name");
-//		person.setCode(12);
-//		return person;
-//	}
+	@Bean
+	public Person person2() {
+		System.out.println("2222");
+		Person person = new Person();
+		person.setName("name");
+		person.setCode(12);
+		return person;
+	}
 
 }

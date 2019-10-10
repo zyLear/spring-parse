@@ -27,4 +27,8 @@ public class AopCreator implements BeanPostProcessor {
 		}
 		return bean;
 	}
+
+	public static void main(String[] args) {
+
+	}
 }

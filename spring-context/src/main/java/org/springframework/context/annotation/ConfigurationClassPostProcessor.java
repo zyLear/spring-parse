@@ -261,6 +261,7 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 			processConfigBeanDefinitions((BeanDefinitionRegistry) beanFactory);
 		}
 
+		//增强full的类
 		enhanceConfigurationClasses(beanFactory);
 
 		//第三个spring内部手动new的beanPostProcessor

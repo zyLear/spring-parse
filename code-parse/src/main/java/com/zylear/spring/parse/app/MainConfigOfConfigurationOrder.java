@@ -33,6 +33,13 @@ public class MainConfigOfConfigurationOrder {
 			System.out.print(name + "         " + context.getBean(name).getClass());
 			System.out.println();
 		}
+		System.out.println(beanDefinitionNames.length);
+
+		System.out.println(context.getBean("&factoryBeanTest").getClass().getName());
+		System.out.println(context.getBean("&factoryBeanTest").getClass().getName());
+
+		beanDefinitionNames = context.getBeanDefinitionNames();
+		System.out.println(beanDefinitionNames.length);
 
 	}
 
