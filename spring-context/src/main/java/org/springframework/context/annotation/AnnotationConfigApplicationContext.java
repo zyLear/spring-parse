@@ -89,6 +89,10 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 		// 调用父类构造函数 实例化DefaultListableBeanFactory
 		// 实例化 AnnotatedBeanDefinitionReader
 		// 实例化 ClassPathBeanDefinitionScanner
+
+		// scanner 是用来扫描@ComponentScan下面符合条件的类转成beanDefinition
+		// (注意只是路径下的符合的类 比如@Component，并没有把@Bean方法 @Import 之类的加) 加到到beanDefinitionMap中
+		// reader 是用来把扫描出来的类放到beanDefinitionMap中
 		this();
 		//注册配置类
 		// ac.register(AppConfig.class)

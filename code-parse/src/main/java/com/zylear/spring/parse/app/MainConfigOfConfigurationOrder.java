@@ -30,7 +30,7 @@ public class MainConfigOfConfigurationOrder {
 
 		String[] beanDefinitionNames = context.getBeanDefinitionNames();
 		for (String name : beanDefinitionNames) {
-			System.out.print(name + " " + context.getBean(name).getClass());
+			System.out.print(name + "         " + context.getBean(name).getClass());
 			System.out.println();
 		}
 

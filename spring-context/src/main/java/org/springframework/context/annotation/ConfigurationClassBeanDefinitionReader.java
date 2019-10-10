@@ -134,14 +134,19 @@ class ConfigurationClassBeanDefinitionReader {
 			return;
 		}
 
+		// 这里的isImported 是被Imported的意思 (前提是configClass没有继承ImportBeanDefinitionRegistrar)
+		// 如果继承了ImportBeanDefinitionRegistrar 本身就不会被加到beanDefinitionMap
+		// 比如说之前解析到 @Import(configClass) 到这一步才加到beanDefinitionMap
 		if (configClass.isImported()) {
 			registerBeanDefinitionForImportedConfigurationClass(configClass);
 		}
 		for (BeanMethod beanMethod : configClass.getBeanMethods()) {
+			// 如方法名所示 加载 这个配置类里面的@Bean放到到 beanDefinitionMap
 			loadBeanDefinitionsForBeanMethod(beanMethod);
 		}
 
 		loadBeanDefinitionsFromImportedResources(configClass.getImportedResources());
+		// 处理ImportBeanDefinitionRegistrar 里面的方法
 		loadBeanDefinitionsFromRegistrars(configClass.getImportBeanDefinitionRegistrars());
 	}
 

@@ -227,6 +227,8 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 	 */
 	@Override
 	public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) {
+		//一开始的时候这个registry就是 DefaultListableBeanFactory
+
 		int registryId = System.identityHashCode(registry);
 		if (this.registriesPostProcessed.contains(registryId)) {
 			throw new IllegalStateException(
@@ -286,6 +288,7 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 			//找出符合的配置类  加到候选人list
 			//isFullConfigurationCandidate(metadata) 加了Configuration 是Full
 			//isLiteConfigurationCandidate(metadata)
+
 			//里面有@Bean的方法 或者类上有以下注解 为 Lite
 			//@Component @ComponentScan @Import @ImportResource
 			else if (ConfigurationClassUtils.checkConfigurationClassCandidate(beanDef, this.metadataReaderFactory)) {
@@ -337,13 +340,16 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 
 		//相当于递归调用 解析出来@Configuration的class  加到 beanDefinition 然后再解析bd 再获取 @Configuration的class 再加bd
 		do {
+			// 调用这个方法会把@Component 注解的类加到beanDefinitionMap
+			// @Configuration注解上面带有@Component
 			parser.parse(candidates);
 			parser.validate();
 
 			//这里返回的东西 会把  candidates 里面的也传出来比如 传了一个candidate进parser
-			// 假设解析了两个@Configuration的class  返回的size是3 用结果去重
+			// 假设解析了两个@Component的class  返回的size是3 用结果去重
 			Set<ConfigurationClass> configClasses = new LinkedHashSet<>(parser.getConfigurationClasses());
 			configClasses.removeAll(alreadyParsed);
+
 
 			// Read the model and create bean definitions based on its content
 			if (this.reader == null) {
@@ -351,10 +357,14 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 						registry, this.sourceExtractor, this.resourceLoader, this.environment,
 						this.importBeanNameGenerator, parser.getImportRegistry());
 			}
+
+			// 注册@Configuration 里面的 @Bean方法 和 @Import(@ImportSource)里面的类 到 beanDefinitionMap
 			this.reader.loadBeanDefinitions(configClasses);
 			alreadyParsed.addAll(configClasses);
 
 			candidates.clear();
+			//扫描出来的bean加到beanDefinitionMap中 检查一下新加的bean要不要再当作配置类解析
+			//主要是处理	this.reader.loadBeanDefinitions(configClasses); 这一步里面新加的beanDefinition (终于串起来了)
 			if (registry.getBeanDefinitionCount() > candidateNames.length) {
 				String[] newCandidateNames = registry.getBeanDefinitionNames();
 				Set<String> oldCandidateNames = new HashSet<>(Arrays.asList(candidateNames));

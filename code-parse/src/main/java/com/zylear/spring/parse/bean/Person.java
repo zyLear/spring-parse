@@ -27,6 +27,12 @@ public class Person implements Query {
 
 	private String name;
 	private Integer code;
+	private int number;
+	private boolean bool;
+	private Person person;
+	private long longNumber;
+	private Boolean boo = true;
+
 
 	public String getName() {
 		return name;
