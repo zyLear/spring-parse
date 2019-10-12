@@ -91,6 +91,8 @@ public class ContextLoader {
 	 */
 	public static final String CONTEXT_ID_PARAM = "contextId";
 
+
+	//指定根容器用的配置文件
 	/**
 	 * Name of servlet context parameter (i.e., {@value}) that can specify the
 	 * config location for the root context, falling back to the implementation's
@@ -285,9 +287,11 @@ public class ContextLoader {
 					if (cwac.getParent() == null) {
 						// The context instance was injected without an explicit parent ->
 						// determine parent for root web application context, if any.
+						//加载父容器 设置
 						ApplicationContext parent = loadParentContext(servletContext);
 						cwac.setParent(parent);
 					}
+					//设置配置类和刷新容器
 					configureAndRefreshWebApplicationContext(cwac, servletContext);
 				}
 			}
