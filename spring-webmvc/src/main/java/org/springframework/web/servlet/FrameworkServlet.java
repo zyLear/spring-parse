@@ -547,6 +547,9 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 		}
 	}
 
+
+	//初始化WebApplicationContext
+
 	/**
 	 * Initialize and publish the WebApplicationContext for this servlet.
 	 * <p>Delegates to {@link #createWebApplicationContext} for actual creation
@@ -841,6 +844,9 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 			onRefresh(event.getApplicationContext());
 		}
 	}
+
+
+	//在context refresh成功之后调用
 
 	/**
 	 * Template method which can be overridden to add servlet-specific refresh work.

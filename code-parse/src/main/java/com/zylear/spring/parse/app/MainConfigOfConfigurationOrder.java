@@ -1,11 +1,14 @@
 package com.zylear.spring.parse.app;
 
 import com.zylear.spring.parse.bean.Person;
+import org.springframework.context.ApplicationEvent;
+import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.LockSupport;
 
 @ComponentScan(value = "com.zylear.spring.parse.config")
@@ -23,9 +26,17 @@ public class MainConfigOfConfigurationOrder {
 //		return new Person();
 //	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		AnnotationConfigApplicationContext context =
-				new AnnotationConfigApplicationContext(MainConfigOfConfigurationOrder.class);
+				new AnnotationConfigApplicationContext();
+		context.register(MainConfigOfConfigurationOrder.class);
+		context.addApplicationListener(new ApplicationListener<ApplicationEvent>() {
+			@Override
+			public void onApplicationEvent(ApplicationEvent event) {
+				System.out.println("shijian " + event.getSource());
+			}
+		});
+		context.refresh();
 
 
 		String[] beanDefinitionNames = context.getBeanDefinitionNames();
@@ -41,6 +52,7 @@ public class MainConfigOfConfigurationOrder {
 		beanDefinitionNames = context.getBeanDefinitionNames();
 		System.out.println(beanDefinitionNames.length);
 
+		TimeUnit.SECONDS.sleep(3);
 	}
 
 }
