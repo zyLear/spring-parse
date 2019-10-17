@@ -1,4 +1,4 @@
-package com.zylear.spring.parse.concurrency.lock;
+package com.zylear.spring.parse.base.concurrency.lock;
 
 import org.junit.Test;
 
@@ -9,8 +9,6 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-
-import static org.junit.Assert.*;
 
 public class MyLockTest {
 

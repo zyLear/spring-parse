@@ -1,8 +1,7 @@
-package com.zylear.spring.parse.concurrency.lock;
+package com.zylear.spring.parse.base.concurrency.lock;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.AbstractQueuedSynchronizer;
-import java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 

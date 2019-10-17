@@ -31,4 +31,8 @@ rootProject.children.each {project ->
 }
 include 'code-parse'
 include 'plain-web'
+include 'plain-spring-mvc'
+include 'plain-spring-mvc'
+include 'plain-spring-mvc'
+
 

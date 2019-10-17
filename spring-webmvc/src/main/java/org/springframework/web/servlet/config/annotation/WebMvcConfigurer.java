@@ -31,6 +31,9 @@ import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 
+//webmvc 配置类
+
+
 /**
  * Defines callback methods to customize the Java-based configuration for
  * Spring MVC enabled via {@code @EnableWebMvc}.
@@ -45,6 +48,8 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
  * @since 3.1
  */
 public interface WebMvcConfigurer {
+
+
 
 	/**
 	 * Helps with configuring HandlerMappings path matching options such as trailing slash match,

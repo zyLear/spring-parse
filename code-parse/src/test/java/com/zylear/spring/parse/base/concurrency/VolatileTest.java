@@ -1,4 +1,4 @@
-package com.zylear.spring.parse.concurrency;
+package com.zylear.spring.parse.base.concurrency;
 
 import org.junit.Test;
 

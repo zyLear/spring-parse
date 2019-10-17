@@ -1,15 +1,12 @@
 package com.zylear.spring.parse.app;
 
-import com.zylear.spring.parse.bean.Person;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.event.ContextRefreshedEvent;
 
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.LockSupport;
 
 @ComponentScan(value = "com.zylear.spring.parse.config")
 //@Configuration
@@ -33,7 +30,9 @@ public class MainConfigOfConfigurationOrder {
 		context.addApplicationListener(new ApplicationListener<ApplicationEvent>() {
 			@Override
 			public void onApplicationEvent(ApplicationEvent event) {
-				System.out.println("shijian " + event.getSource());
+				if (event instanceof ContextRefreshedEvent) {
+					System.out.println("shijian " + ((ContextRefreshedEvent) event).getApplicationContext());
+				}
 			}
 		});
 		context.refresh();
