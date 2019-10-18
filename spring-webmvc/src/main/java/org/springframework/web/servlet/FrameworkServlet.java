@@ -513,6 +513,9 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	}
 
 
+
+	//初始化 dispatcherServlet的组件  在servlet init() 方法里面
+
 	/**
 	 * Overridden method of {@link HttpServletBean}, invoked after any bean properties
 	 * have been set. Creates this servlet's WebApplicationContext.
