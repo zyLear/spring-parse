@@ -587,6 +587,10 @@ public class DispatcherServlet extends FrameworkServlet {
 		}
 	}
 
+
+	//初始化HandlerMappings
+	//如果在BeanFactory里面找不到这个HandlerMappings 就会用默认的HandlerMappings
+
 	/**
 	 * Initialize the HandlerMappings used by this class.
 	 * <p>If no HandlerMapping beans are defined in the BeanFactory for this namespace,
@@ -595,6 +599,7 @@ public class DispatcherServlet extends FrameworkServlet {
 	private void initHandlerMappings(ApplicationContext context) {
 		this.handlerMappings = null;
 
+		//探测所有HandlerMappings的开关
 		if (this.detectAllHandlerMappings) {
 			// Find all HandlerMappings in the ApplicationContext, including ancestor contexts.
 			Map<String, HandlerMapping> matchingBeans =
@@ -987,6 +992,8 @@ public class DispatcherServlet extends FrameworkServlet {
 			}
 		});
 	}
+
+	//mvc core
 
 	/**
 	 * Process the actual dispatching to the handler.
