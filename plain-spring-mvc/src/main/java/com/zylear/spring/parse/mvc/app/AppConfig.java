@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -18,7 +19,8 @@ public class AppConfig {
 	//http://localhost:8080/mvc/app
 	@RequestMapping("/app")
 	@ResponseBody
-	public String string() {
+	public String string(HttpServletRequest httpServletRequest) {
+		System.out.println(httpServletRequest);
 		return "ok";
 	}
 
