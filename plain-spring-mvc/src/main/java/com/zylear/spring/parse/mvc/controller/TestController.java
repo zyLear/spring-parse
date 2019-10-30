@@ -4,7 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-@Controller("/test")
+@Controller
+@RequestMapping("/test")
 public class TestController {
 
 	//http://localhost:8080/mvc/test
@@ -24,6 +25,13 @@ public class TestController {
 		tests.setName("nnnn");
 		return tests;
 	}
+
+	@RequestMapping("/three")
+	@ResponseBody
+	public String three() {
+		return "three";
+	}
+
 
 	public static class Tests {
 		private String name;
