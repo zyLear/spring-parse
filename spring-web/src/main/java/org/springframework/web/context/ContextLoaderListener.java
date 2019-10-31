@@ -100,6 +100,7 @@ public class ContextLoaderListener extends ContextLoader implements ServletConte
 	 */
 	@Override
 	public void contextInitialized(ServletContextEvent event) {
+		//servletContext初始化的时候 初始化根容器 根容器用来存放service dao相关bean
 		//初始化root web application context 和父容器，根容器设置到servletContext的一个属性
 		initWebApplicationContext(event.getServletContext());
 	}

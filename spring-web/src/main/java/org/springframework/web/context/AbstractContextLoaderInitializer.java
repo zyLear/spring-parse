@@ -47,6 +47,7 @@ public abstract class AbstractContextLoaderInitializer implements WebApplication
 
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
+		//注册spring ioc父容器
 		registerContextLoaderListener(servletContext);
 	}
 

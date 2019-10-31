@@ -15,12 +15,11 @@ import java.util.List;
 @ComponentScan("com.zylear.spring.parse.mvc")
 public class AppConfig {
 
-
 	//http://localhost:8080/mvc/app
 	@RequestMapping("/app")
 	@ResponseBody
 	public String string(HttpServletRequest httpServletRequest) {
-		System.out.println(httpServletRequest);
+		System.out.println("request: " + httpServletRequest);
 		return "ok";
 	}
 

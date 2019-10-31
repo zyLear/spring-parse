@@ -591,6 +591,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		}
 	}
 
+
+	//设置激活标记
 	/**
 	 * Prepare this context for refreshing, setting its startup date and
 	 * active flag as well as performing any initialization of property sources.

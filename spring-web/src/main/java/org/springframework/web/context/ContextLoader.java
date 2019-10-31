@@ -287,14 +287,16 @@ public class ContextLoader {
 					if (cwac.getParent() == null) {
 						// The context instance was injected without an explicit parent ->
 						// determine parent for root web application context, if any.
-						//加载父容器 设置
+
+						//如果rootWebApplicationContext 有父容器的话 设置  但是这里是返回null
 						ApplicationContext parent = loadParentContext(servletContext);
 						cwac.setParent(parent);
 					}
-					//设置配置类和刷新容器
+					//设置配置类和刷新容器  如果rootWebApplicationContext
 					configureAndRefreshWebApplicationContext(cwac, servletContext);
 				}
 			}
+			//把根容器设置到servletContext的属性里面
 			servletContext.setAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE, this.context);
 
 			ClassLoader ccl = Thread.currentThread().getContextClassLoader();
@@ -386,6 +388,7 @@ public class ContextLoader {
 			}
 		}
 
+		//rootWebApplicationContext 设置 servletContext
 		wac.setServletContext(sc);
 		String configLocationParam = sc.getInitParameter(CONFIG_LOCATION_PARAM);
 		if (configLocationParam != null) {
