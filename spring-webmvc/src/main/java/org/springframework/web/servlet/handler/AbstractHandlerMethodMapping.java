@@ -190,6 +190,8 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 
 	// Handler method detection
 
+	//requestMappingHandlerMapping
+
 	/**
 	 * Detects handler methods at initialization.
 	 * @see #initHandlerMethods
@@ -248,6 +250,10 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 				logger.trace("Could not resolve type for bean '" + beanName + "'", ex);
 			}
 		}
+
+		//isHandler?    AnnotatedElementUtils.hasAnnotation(beanType, Controller.class) ||
+		//				AnnotatedElementUtils.hasAnnotation(beanType, RequestMapping.class)
+		//beanType上是否有@Controller或RequestMapping这两个注解
 		if (beanType != null && isHandler(beanType)) {
 			detectHandlerMethods(beanName);
 		}
@@ -267,6 +273,7 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 			Map<Method, T> methods = MethodIntrospector.selectMethods(userType,
 					(MethodIntrospector.MetadataLookup<T>) method -> {
 						try {
+							//这里这里RequestMapping注解的值
 							return getMappingForMethod(method, userType);
 						}
 						catch (Throwable ex) {

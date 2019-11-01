@@ -467,6 +467,9 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	// Implementation of relevant AbstractBeanFactory template methods
 	//---------------------------------------------------------------------
 
+
+
+	//这个类的核心方法 创建bean 设置属性 应用后置处理器等
 	/**
 	 * Central method of this class: creates a bean instance,
 	 * populates the bean instance, applies post-processors, etc.
@@ -535,6 +538,9 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		}
 	}
 
+
+    //真正的创建bean
+
 	/**
 	 * Actually create the specified bean. Pre-creation processing has already happened
 	 * at this point, e.g. checking {@code postProcessBeforeInstantiation} callbacks.
@@ -596,6 +602,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		// Initialize the bean instance.
 		Object exposedObject = bean;
 		try {
+			//自动注入
 			populateBean(beanName, mbd, instanceWrapper);
 			exposedObject = initializeBean(beanName, exposedObject, mbd);
 		}
@@ -1101,6 +1108,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			if (!mbd.isSynthetic() && hasInstantiationAwareBeanPostProcessors()) {
 				Class<?> targetType = determineTargetType(beanName, mbd);
 				if (targetType != null) {
+					//实例化之前
 					bean = applyBeanPostProcessorsBeforeInstantiation(targetType, beanName);
 					if (bean != null) {
 						bean = applyBeanPostProcessorsAfterInitialization(bean, beanName);

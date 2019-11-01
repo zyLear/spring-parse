@@ -826,6 +826,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			RootBeanDefinition bd = getMergedLocalBeanDefinition(beanName);
 			if (!bd.isAbstract() && bd.isSingleton() && !bd.isLazyInit()) {
 				if (isFactoryBean(beanName)) {
+					//先把FactoryBean外层的bean实例化 之后再创建里面的Object
 					Object bean = getBean(FACTORY_BEAN_PREFIX + beanName);
 					if (bean instanceof FactoryBean) {
 						final FactoryBean<?> factory = (FactoryBean<?>) bean;
@@ -845,12 +846,12 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 					}
 				}
 				else {
+					//为全部合适的bean的触发post-initialization 实例后置处理方法
 					getBean(beanName);
 				}
 			}
 		}
 
-		//为全部合适的bean的触发post-initialization 实例后置处理方法
 		// Trigger post-initialization callback for all applicable beans...
 		for (String beanName : beanNames) {
 			Object singletonInstance = getSingleton(beanName);
@@ -863,6 +864,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 					}, getAccessControlContext());
 				}
 				else {
+					//实例化并且执行了所有的生命周期回调之后 最后执行这个方法
 					smartSingleton.afterSingletonsInstantiated();
 				}
 			}

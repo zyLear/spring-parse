@@ -147,6 +147,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 	public AutowiredAnnotationBeanPostProcessor() {
 		this.autowiredAnnotationTypes.add(Autowired.class);
 		this.autowiredAnnotationTypes.add(Value.class);
+		//如果有JSR-330 'javax.inject.Inject' 的话也加到自动注入检测类型里面
 		try {
 			this.autowiredAnnotationTypes.add((Class<? extends Annotation>)
 					ClassUtils.forName("javax.inject.Inject", AutowiredAnnotationBeanPostProcessor.class.getClassLoader()));

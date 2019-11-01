@@ -486,6 +486,12 @@ public class DispatcherServlet extends FrameworkServlet {
 	}
 
 
+
+	//这里要特别注意！！！
+	//只有DispatcherServlet里面创建的web子容器才会执行这个onRefresh方法 在子容器刷新完成的时候
+	//根容器在ContextLoader里面配置&刷新 根容器刷新完成没有执行这个初始化DispatcherServlet组件方法
+	//子容器在执行这个方法的时候会到本身容器和父容器中找Bean去配置 DispatcherServlet组件
+
 	/**
 	 * This implementation calls {@link #initStrategies}.
 	 */
@@ -601,6 +607,7 @@ public class DispatcherServlet extends FrameworkServlet {
 
 		//探测所有HandlerMappings的开关
 		if (this.detectAllHandlerMappings) {
+			//这一步很重要 本身容器找不到 会到根容器找HandlerMapping Bean
 			// Find all HandlerMappings in the ApplicationContext, including ancestor contexts.
 			Map<String, HandlerMapping> matchingBeans =
 					BeanFactoryUtils.beansOfTypeIncludingAncestors(context, HandlerMapping.class, true, false);
