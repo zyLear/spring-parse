@@ -20,7 +20,7 @@ public class AopPostProcessor implements BeanPostProcessor {
 				@Override
 				public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 					System.out.println("aop start");
-					Object result = method.invoke(bean);
+					Object result = method.invoke(bean, args);
 					System.out.println("aop end");
 					return result;
 				}
