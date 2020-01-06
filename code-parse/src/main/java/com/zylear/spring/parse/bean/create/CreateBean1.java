@@ -1,5 +1,6 @@
 package com.zylear.spring.parse.bean.create;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -8,6 +9,7 @@ import java.util.Map;
 import java.util.Set;
 
 @Component
+@Scope("prototype")
 public class CreateBean1 {
 
 	public static void main(String[] args) {

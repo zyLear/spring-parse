@@ -169,7 +169,8 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 
 
 	/*
-	* 获取单例已经实例化的bean（加入到singletonObjects） 或者早期创建引用的bean
+	* 获取单例已经实例化的bean（不修改singletonObjects）
+	* 或者创建早期引用的bean   earlySingletonObjects
 	* */
 
 	/**
@@ -351,6 +352,11 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 		return this.singletonsCurrentlyInCreation.contains(beanName);
 	}
 
+
+
+
+	//检查是否正在创建  防止重复创建 并发
+	//singletonsCurrentlyInCreation
 	/**
 	 * Callback before singleton creation.
 	 * <p>The default implementation register the singleton as currently in creation.
@@ -442,6 +448,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	 * @param dependentBeanName the name of the dependent bean
 	 * @since 4.0
 	 */
+	//dependent 依赖者
 	protected boolean isDependent(String beanName, String dependentBeanName) {
 		synchronized (this.dependentBeanMap) {
 			return isDependent(beanName, dependentBeanName, null);

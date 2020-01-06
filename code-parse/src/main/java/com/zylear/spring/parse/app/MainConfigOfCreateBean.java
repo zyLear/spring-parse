@@ -13,6 +13,17 @@ public class MainConfigOfCreateBean {
 		context.register(MainConfigOfCreateBean.class);
 		context.refresh();
 
+
+
+		String[] beanDefinitionNames = context.getBeanDefinitionNames();
+		for (String name : beanDefinitionNames) {
+			System.out.print(name + " " + context.getBeanDefinition(name).getBeanClassName());
+			System.out.println();
+		}
+
+//		Object createBean3 = context.getBean("createBean1");
+//		Object createBean1 = context.getBean("createBean3");
+
 	}
 
 }

@@ -469,6 +469,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
 
 
+	//core
 	//这个类的核心方法 创建bean 设置属性 应用后置处理器等
 	/**
 	 * Central method of this class: creates a bean instance,
@@ -1093,6 +1094,8 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		}
 	}
 
+
+	//实例化对象之前的后置处理方法  是生成对象的捷径  如果这里返回对象 后续的创建bean流程就不走了 直接用这个bean
 	/**
 	 * Apply before-instantiation post-processors, resolving whether there is a
 	 * before-instantiation shortcut for the specified bean.

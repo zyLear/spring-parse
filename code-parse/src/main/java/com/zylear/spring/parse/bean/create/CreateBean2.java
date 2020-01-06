@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-@Component
+//@Component
 public class CreateBean2 {
 
 	public static void main(String[] args) {

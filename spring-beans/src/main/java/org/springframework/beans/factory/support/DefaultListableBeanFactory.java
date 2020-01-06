@@ -846,12 +846,12 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 					}
 				}
 				else {
-					//为全部合适的bean的触发post-initialization 实例后置处理方法
+				   // 执行 populate 方法
 					getBean(beanName);
 				}
 			}
 		}
-
+		//为全部合适的bean的触发post-initialization 实例后置处理方法
 		// Trigger post-initialization callback for all applicable beans...
 		for (String beanName : beanNames) {
 			Object singletonInstance = getSingleton(beanName);
