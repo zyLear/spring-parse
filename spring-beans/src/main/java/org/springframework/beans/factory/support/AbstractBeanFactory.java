@@ -268,7 +268,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 
 		else {
 
-			//如果是目前正在创建的prototypebean 报错
+			//如果是目前正在创建的prototypeBean 报错
 
 			// Fail if we're already creating this bean instance:
 			// We're assumably within a circular reference.

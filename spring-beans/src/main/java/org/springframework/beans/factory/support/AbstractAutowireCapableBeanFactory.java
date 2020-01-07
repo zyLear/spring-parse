@@ -605,6 +605,15 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		try {
 			//自动注入
 			populateBean(beanName, mbd, instanceWrapper);
+
+			//执行Aware方法 设置Aware的东西 invokeAwareMethods
+			// 执行所有BeanPostProcessor的postProcessBeforeInitialization方法
+			//              这个InitDestroyAnnotationBeanPostProcessor处理@PostConstruct @PreDestroy 等注解利用反射执行方法
+			// 执行初始化方法invokeInitMethods
+			// InitializingBean.afterPropertiesSet
+			// 执行自定义的初始化方法invokeCustomInitMethod
+			// 执行所有BeanPostProcessor的postProcessAfterInitialization
+
 			exposedObject = initializeBean(beanName, exposedObject, mbd);
 		}
 		catch (Throwable ex) {
@@ -619,6 +628,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
 		if (earlySingletonExposure) {
 			Object earlySingletonReference = getSingleton(beanName, false);
+			//没有依赖这里为空 可以简化
 			if (earlySingletonReference != null) {
 				if (exposedObject == bean) {
 					exposedObject = earlySingletonReference;
@@ -1211,6 +1221,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			return autowireConstructor(beanName, mbd, ctors, null);
 		}
 
+		//正常是走这个逻辑
 		// No special handling: simply use no-arg constructor.
 		return instantiateBean(beanName, mbd);
 	}

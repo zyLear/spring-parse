@@ -183,6 +183,10 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	 */
 	@Nullable
 	protected Object getSingleton(String beanName, boolean allowEarlyReference) {
+
+		//三级缓存作用： getEarlyBeanReference()经过一系列的后置处理来给我们早期对象进行特殊化处理
+		//
+
 		/*
 		 *在网上很多很多写源码的大倍或者尽<spring源码深度解析》一书上,也没有说清楚为啥要使用三级缓存(二级缓在可不可以能够 *解决)
 		 * 答案是:可以,但是没有很好的扩展性为啥这么说
