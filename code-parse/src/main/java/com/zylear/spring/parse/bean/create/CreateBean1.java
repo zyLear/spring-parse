@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Set;
 
 @Component
-@Scope("prototype")
+//@Scope("prototype")
 public class CreateBean1 {
 
 	public static void main(String[] args) {
