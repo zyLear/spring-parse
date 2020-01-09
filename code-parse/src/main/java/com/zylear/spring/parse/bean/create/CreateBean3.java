@@ -16,7 +16,7 @@ public class CreateBean3 implements BeanPostProcessor {
 //	private CreateBean3 createBean3;
 
 	@Autowired
-	private CreateBean1 createBean1;
+	private CreateBean4 createBean1;
 
 
 	@Value("xiezongyu")

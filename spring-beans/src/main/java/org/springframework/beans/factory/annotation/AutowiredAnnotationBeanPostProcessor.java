@@ -591,11 +591,13 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 				Assert.state(beanFactory != null, "No BeanFactory available");
 				TypeConverter typeConverter = beanFactory.getTypeConverter();
 				try {
+					//真正去获取依赖的方法
 					value = beanFactory.resolveDependency(desc, beanName, autowiredBeanNames, typeConverter);
 				}
 				catch (BeansException ex) {
 					throw new UnsatisfiedDependencyException(null, beanName, new InjectionPoint(field), ex);
 				}
+				//主流程应该可以不用看下面这段
 				synchronized (this) {
 					if (!this.cached) {
 						if (value != null || this.required) {
@@ -617,6 +619,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 					}
 				}
 			}
+			//最终的执行
 			if (value != null) {
 				ReflectionUtils.makeAccessible(field);
 				field.set(bean, value);
