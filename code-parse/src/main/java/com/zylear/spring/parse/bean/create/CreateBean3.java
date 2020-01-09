@@ -12,11 +12,15 @@ import javax.annotation.PostConstruct;
 @Configuration
 public class CreateBean3 implements BeanPostProcessor {
 
+	{
+		System.out.println("CreateBean3 construct");
+	}
+
 //	@Autowired
 //	private CreateBean3 createBean3;
 
 	@Autowired
-	private CreateBean4 createBean1;
+	private CreateBean4 createBean4;
 
 
 	@Value("xiezongyu")
@@ -30,7 +34,7 @@ public class CreateBean3 implements BeanPostProcessor {
 
 	@PostConstruct
 	private void lalal() {
-		System.out.println(11);
+		System.out.println("CreateBean3 PostConstruct");
 	}
 
 //	@Override

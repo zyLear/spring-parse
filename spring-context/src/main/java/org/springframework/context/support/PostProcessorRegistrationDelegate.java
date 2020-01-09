@@ -56,7 +56,7 @@ final class PostProcessorRegistrationDelegate {
 			ConfigurableListableBeanFactory beanFactory, List<BeanFactoryPostProcessor> beanFactoryPostProcessors) {
 
 		// 参数的beanFactoryPostProcessors 是程序员手动设置的beanFactoryPostProcessor 首先执行
-		// context.addBeanFactoryPostProcessor(xx);
+		// context.addBeanFactoryPostProcessor(xx);0
 
 		// 如果有的话，首先调用beandefinition registrypostprocessor
 		// 之后再从beanDefinitionMap 里面获取beanFactory 按优先级实例化 然后执行后置处理方法
@@ -105,6 +105,7 @@ final class PostProcessorRegistrationDelegate {
 			List<BeanDefinitionRegistryPostProcessor> currentRegistryProcessors = new ArrayList<>();
 
 			//主要是执行 ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry() 扫描beanDefinition
+			//ConfigurationClassPostProcessor 是最高优先级的
 
 			// First, invoke the BeanDefinitionRegistryPostProcessors that implement PriorityOrdered.
 			String[] postProcessorNames =
@@ -235,6 +236,9 @@ final class PostProcessorRegistrationDelegate {
 		int beanProcessorTargetCount = beanFactory.getBeanPostProcessorCount() + 1 + postProcessorNames.length;
 		//第四个spring内部手动new的beanPostProcessor
 		beanFactory.addBeanPostProcessor(new BeanPostProcessorChecker(beanFactory, beanProcessorTargetCount));
+
+
+		//主要是找出ConfigurationClassPostProcessor这个后置处理器,扫描所有的beanDefinition加入到map
 
 		// Separate between BeanPostProcessors that implement PriorityOrdered,
 		// Ordered, and the rest.
