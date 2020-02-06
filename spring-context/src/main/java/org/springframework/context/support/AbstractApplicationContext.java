@@ -539,10 +539,12 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				//20190918 得出结论  在执行 ConfigurationClassPostProcessor implements BeanDefinitionRegistryPostProcessor
 				//这个类的postProcessBeanDefinitionRegistry这个后置处理方法的时候扫描包然后加到beanDefinitionMap
 
-				// Invoke factory processors registered as beans in the context.
+				// Invoke factory processors registered as beans in the context|
+				//ConfigurationClassPostProcessor!!!!!  扫描子类 注册到beanDefinitionMap
 				invokeBeanFactoryPostProcessors(beanFactory);
 
 				// Register bean processors that intercept bean creation.
+				//AutowiredAnnotationBeanPostProcessor!!!!!  重要的beanPostprocessor 自动注入  在后面实例化剩余单例的时候用到
 				registerBeanPostProcessors(beanFactory);
 
 				// Initialize message source for this context.
