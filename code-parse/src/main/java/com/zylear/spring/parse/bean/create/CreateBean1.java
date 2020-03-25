@@ -22,4 +22,8 @@ public class CreateBean1 {
 		System.out.println("CreateBean1 PostConstruct");
 	}
 
+
+	public static void main(String[] args) {
+		System.out.println(new Double(null).intValue());
+	}
 }
