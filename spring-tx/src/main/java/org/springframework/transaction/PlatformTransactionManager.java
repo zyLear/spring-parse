@@ -44,6 +44,8 @@ import org.springframework.lang.Nullable;
  */
 public interface PlatformTransactionManager {
 
+
+	//根据指定的传播行为返回当前激活的事务或者创建一个新事务
 	/**
 	 * Return a currently active transaction or create a new one, according to
 	 * the specified propagation behavior.

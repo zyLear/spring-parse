@@ -472,6 +472,7 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 		TransactionStatus status = null;
 		if (txAttr != null) {
 			if (tm != null) {
+				//db 开启/或者 获取事务
 				status = tm.getTransaction(txAttr);
 			}
 			else {
