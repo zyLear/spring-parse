@@ -42,6 +42,8 @@ import org.springframework.lang.Nullable;
  */
 public interface BeanPostProcessor {
 
+
+	//初始化之前  为执行任何init之类的初始化方法  不是实例化
 	/**
 	 * Apply this BeanPostProcessor to the given new bean instance <i>before</i> any bean
 	 * initialization callbacks (like InitializingBean's {@code afterPropertiesSet}
@@ -59,6 +61,9 @@ public interface BeanPostProcessor {
 	default Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
 		return bean;
 	}
+
+
+	//初始化之后执行  入参的bean可能已经被包装过了
 
 	/**
 	 * Apply this BeanPostProcessor to the given new bean instance <i>after</i> any bean

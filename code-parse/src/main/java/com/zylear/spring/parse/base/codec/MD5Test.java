@@ -7,6 +7,10 @@ import java.util.List;
 public class MD5Test {
 
 	public static void main(String[] args) {
+		int j = 0;
+		int i = j++;
+		System.out.println(i);
+		System.out.println(j);
 		test();
 	}
 
