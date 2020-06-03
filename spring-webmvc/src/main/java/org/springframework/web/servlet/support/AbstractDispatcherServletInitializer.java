@@ -61,6 +61,7 @@ public abstract class AbstractDispatcherServletInitializer extends AbstractConte
 	public void onStartup(ServletContext servletContext) throws ServletException {
 		//注册spring ioc父容器
 		super.onStartup(servletContext);
+		//注册spring mvc ioc子容器
 		registerDispatcherServlet(servletContext);
 	}
 
