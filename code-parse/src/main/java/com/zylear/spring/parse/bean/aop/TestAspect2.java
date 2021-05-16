@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Aspect
-@Order(3)
+@Order(1)
 public class TestAspect2 {
 
 //
@@ -16,6 +16,8 @@ public class TestAspect2 {
 //	public void cache() {
 //	}
 
+
+	//aop order只能决定class的顺序 不能决定里面方法的顺序
 	@Around(" @annotation(com.zylear.spring.parse.bean.aop.Cache)")
 	@Order(2)
 	public Object aroundAdvice1(ProceedingJoinPoint jp) throws Throwable {

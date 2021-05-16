@@ -509,6 +509,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			* 通过bean的后置处理器来进行后置处理生成代理对象,一般情况下在此处不会生成代理对象
 			* *为什么不能生成代理对象,不管是我们的jdk代理还是cglib代理都不会在此处进行代理,因为我们的
 			* *真实的对象没有生成,所以在这里不会生成代理对象,那么在这一步是我们Jaop和事务的关键,因为在这里
+			* *可以解析一遍bean的相关aop、事务信息
 			* */
 			// Give BeanPostProcessors a chance to return a proxy instead of the target bean instance.
 			Object bean = resolveBeforeInstantiation(beanName, mbdToUse);
@@ -1817,8 +1818,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		}
 		if (mbd == null || !mbd.isSynthetic()) {
 			//aop处理的是这一步 返回aop增强的对象
-			// xxx 不一定  代理是已经生成了代理之后的class，替换beanDefinition的class
-			// 按照正常的反射方法实例化
+			// @Configuration的代理就不是这一步返回 @Configuration把beanDefinition的class都改了
 			wrappedBean = applyBeanPostProcessorsAfterInitialization(wrappedBean, beanName);
 		}
 

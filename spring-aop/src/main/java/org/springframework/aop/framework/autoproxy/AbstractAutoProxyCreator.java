@@ -295,6 +295,8 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 	public Object postProcessAfterInitialization(@Nullable Object bean, String beanName) {
 		if (bean != null) {
 			Object cacheKey = getCacheKey(bean.getClass(), beanName);
+			//bean 正常来说是未增强的bean，如果跟三级缓存获取之后的不一样，则要增强一下
+			//或者三级缓存根本没有获取，则这里返回null！= bean，也需要判断增强一下
 			if (this.earlyProxyReferences.remove(cacheKey) != bean) {
 				return wrapIfNecessary(bean, beanName, cacheKey);
 			}

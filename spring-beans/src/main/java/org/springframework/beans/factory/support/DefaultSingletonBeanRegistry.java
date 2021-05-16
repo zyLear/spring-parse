@@ -184,22 +184,8 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	@Nullable
 	protected Object getSingleton(String beanName, boolean allowEarlyReference) {
 
-		//三级缓存作用： getEarlyBeanReference()经过一系列的后置处理来给我们早期对象进行特殊化处理
-		//
-
-		/*
-		 *在网上很多很多写源码的大倍或者尽<spring源码深度解析》一书上,也没有说清楚为啥要使用三级缓存(二级缓在可不可以能够 *解决)
-		 * 答案是:可以,但是没有很好的扩展性为啥这么说
-		 * *原因:获取三级缓存-----getEarlyBeanReference()经过一系列的后置处理来给我们早期对象进行特殊化处理
-		 * * //从三级缓存中获取包装对象的时候,他会经过一次后置处理器的处理对我们早期对象的bean进行
-		 * *特殊化处理,但是spring的原生后置处型器没有经过处理,而是留给了我们程序员进行扩展* singletonobject =singletonFactory.getobject();
-		 * *把三级缓存移植到二级缓存中-this.earlysingletonobjects.put(beanName, singletonobject);
-		 * //删除三级缓存中的之-this.singletonFactories.remove(beanName);
-		 * aparam beanName bean的名称aparam allowEarlyReference是否允许暴露早期对象 通过该参数可以控制是否能够解决循环依赖的.
-		 * allowEarlyReference areturn这里可能返回一个null (10c容器加载单实例bean的时候,
-		 * 第一次进来是返回null)也有可能返回一个单例对象(IOC容器加载了单实例了,第二次来获取当前的Bean,
-		 * 也可能返回一个早期对象(用于解决循环依赖问题)
-		 */
+		//三级缓存作用：getEarlyBeanReference()经过一系列的后置处理来给我们早期对象进行特殊化处理
+		//而三级缓存保证getEarlyBeanReference里面的处理方法只执行一次，结果缓存到二级缓存
 
 		Object singletonObject = this.singletonObjects.get(beanName);
 		if (singletonObject == null && isSingletonCurrentlyInCreation(beanName)) {
