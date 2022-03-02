@@ -4,14 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AopBean {
+public class SimpleBean2 {
 
 	@Autowired
-	public SimpleBean simpleBean;
-
-	@Cache
-	public void cache() {
-		System.out.println("cache");
-	}
+	public AopBean aopBean;
 
 }

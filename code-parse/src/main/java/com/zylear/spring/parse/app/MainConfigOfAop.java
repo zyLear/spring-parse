@@ -2,6 +2,8 @@ package com.zylear.spring.parse.app;
 
 import com.zylear.spring.parse.annotation.EnableAop;
 import com.zylear.spring.parse.bean.aop.AopBean;
+import com.zylear.spring.parse.bean.aop.SimpleBean2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +19,9 @@ import java.util.List;
 @EnableAspectJAutoProxy(exposeProxy = true, proxyTargetClass = true)
 public class MainConfigOfAop {
 //	@Bean
+
+	@Autowired
+	private AopBean aopBean;
 
 	public static void main(String[] args) {
 
@@ -38,8 +43,12 @@ public class MainConfigOfAop {
 			System.out.println();
 		}
 
-		AopBean aopBean = context.getBean("aopBean", AopBean.class);
+//		AopBean aopBean = context.getBean("aopBean", AopBean.class);
+		SimpleBean2 main = context.getBean(SimpleBean2.class);
+		AopBean aopBean = main.aopBean;
 		aopBean.cache();
+
+		System.out.println(aopBean.simpleBean.name);
 
 
 	}
